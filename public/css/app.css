@@ -8403,3 +8403,28 @@ body {
   color: inherit;
 }
 
+/* User register page */
+
+.register-page .panel-default {
+  -webkit-box-shadow: 0px 1px 11px 2px rgba(42, 42, 42, 0.1);
+          box-shadow: 0px 1px 11px 2px rgba(42, 42, 42, 0.1);
+}
+
+.register-page .panel-heading {
+  background-color: #ffe9bb;
+}
+
+.register-page img.captcha {
+  margin-bottom: 0px;
+  margin-top: 0px;
+  cursor: pointer;
+}
+
+.register-page .register {
+  padding-left: 0;
+}
+
+.register-page .register-bottom {
+  margin-top: 10px;
+}
+

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class LoginPagesController extends Controller
 {
     public function home(){
-			return view('home');
+			return view('auth/login');
 
 		}
 }

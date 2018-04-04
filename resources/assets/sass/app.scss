@@ -54,3 +54,25 @@ body {
         }
     }
 }
+
+/* User register page */
+.register-page {
+	.panel-default{
+		box-shadow: 0px 1px 11px 2px rgba(42, 42, 42, 0.1);
+	}
+	.panel-heading{
+		background-color: #ffe9bb;
+	}
+    img.captcha {
+        margin-bottom: 0px;
+        margin-top: 0px;
+        cursor: pointer;
+        
+    }
+    .register{
+    	padding-left:0;
+    }
+    .register-bottom{
+    	margin-top:10px;
+    }
+}
