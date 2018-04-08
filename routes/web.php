@@ -45,3 +45,10 @@ Route::get('/users/{user}/edit', 'UsersController@edit')->name('users.edit');
 Route::patch('/users/{user}', 'UsersController@update')->name('users.update');
 
 //Users show page Routes...
+
+Route::resource('topics', 'TopicsController', ['only' => ['index', 'show', 'create', 'store', 'update', 'edit', 'destroy']]);
+//Route::resource('classes', 'ClassesController', ['only' => ['index', 'show', 'create', 'store', 'update', 'edit', 'destroy']]);
+
+//Klasses Routes...
+//Route::resource('klasses', 'KlassesController', ['only' => ['show']]);
+Route::get('/klasses/{klasse}','KlassesController@show') -> name('klasses.show');

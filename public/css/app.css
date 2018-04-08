@@ -8368,6 +8368,19 @@ body {
   margin-top: 0px;
 }
 
+.navbar-static-top .dropdown-menu {
+  padding: 0px;
+}
+
+.navbar-static-top .dropdown-menu li a {
+  border-bottom: 1px solid #d8d8d8;
+  line-height: 2.4;
+}
+
+.navbar-static-top .dropdown-menu li a .glyphicon {
+  margin-right: 8px;
+}
+
 /* Sticky footer styles */
 
 html {
@@ -8426,5 +8439,23 @@ body {
 
 .register-page .register-bottom {
   margin-top: 10px;
+}
+
+.modal-backdrop {
+  z-index: 0;
+}
+
+.users-edit-page .panel-default > .panel-heading {
+  background-color: #fff;
+}
+
+/* User profile page */
+
+.users-show-page .user-info .thumbnail {
+  margin-bottom: 0px;
+}
+
+.users-show-page .pagination {
+  margin: 0 0 10px 0;
 }
 

@@ -20,7 +20,21 @@ body {
     border-top: 4px solid #00b5ad;
     margin-bottom: 40px;
     margin-top: 0px;
+
+    .dropdown-menu {
+        padding: 0px;
+
+        li a {
+            border-bottom: 1px solid #d8d8d8;
+            line-height: 2.4;
+
+            .glyphicon {
+                margin-right: 8px;
+            }
+        }
+    }
 }
+
 
 /* Sticky footer styles */
 html {
@@ -74,5 +88,26 @@ body {
     }
     .register-bottom{
     	margin-top:10px;
+    }
+}
+.modal-backdrop{
+    z-index:0;
+}
+.users-edit-page{
+    .panel-default>.panel-heading{
+        background-color: #fff;
+    }
+
+}
+
+/* User profile page */
+.users-show-page {
+    .user-info {
+        .thumbnail {
+            margin-bottom: 0px;
+        }
+    }
+    .pagination {
+        margin:0 0 10px 0;
     }
 }
