@@ -21,7 +21,7 @@
                 @include('common.error')
 
                 @if($topic->id)
-                    <form action="{{ route('topics.update', $topic->id) }}" method="POST" accept-charset="UTF-8">
+                    <form action="{{ route('topics.update', $topic->id ) }}" method="POST" accept-charset="UTF-8">
                         <input type="hidden" name="_method" value="PUT">
                 @else
                     <form action="{{ route('topics.store') }}" method="POST" accept-charset="UTF-8">
@@ -32,6 +32,8 @@
                     <div class="form-group">
                         <input class="form-control" type="text" name="title" value="{{ old('title', $topic->title ) }}" placeholder="请填写标题" required/>
                     </div>
+
+                    <input type="hidden" name="class_id" value="{{ 1 }}">
 
 {{--                     <div class="form-group">
                         <select class="form-control" name="category_id" required>

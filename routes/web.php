@@ -46,8 +46,9 @@ Route::patch('/users/{user}', 'UsersController@update')->name('users.update');
 
 //Users show page Routes...
 
-Route::resource('topics', 'TopicsController', ['only' => ['index', 'show', 'create', 'store', 'update', 'edit', 'destroy']]);
+Route::resource('topics', 'TopicsController', ['only' => ['index', 'create', 'store', 'update', 'edit', 'destroy']]);
 //Route::resource('classes', 'ClassesController', ['only' => ['index', 'show', 'create', 'store', 'update', 'edit', 'destroy']]);
+Route::get('topics/{topic}/{slug?}','TopicsController@show')->name('topics.show');
 
 //Klasses Routes...
 //Route::resource('klasses', 'KlassesController', ['only' => ['show']]);
