@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Topic;
+use App\Models\User;
+use App\Models\Area;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TopicRequest;
@@ -74,8 +76,23 @@ class TopicsController extends Controller
 
 	public function index(Request $request, Topic $topic)
     {
-        $topics = $topic->withOrder($request->order)->paginate(12);
+       
+            if( Auth::user() && Auth::user()->area_id != 0){
+                $area = Auth::user()->area()->first()->id;
+                $topics = Topic::withOrder($request->order)->where('area_id',$area)->paginate(12);
+            }
+            else { 
+                // $topics = Area::with('users')->with('topics')->paginate(12);
+                $topics = $topic->withOrder($request->order)->paginate(12);
+                
+                //dd($topics);
+                //$topics = $topic->withOrder($request->order)->where('area_id',$area)->paginate(12);
+                //return view('topics.index', compact('topics'));
+            }
+
         return view('topics.index', compact('topics'));
+
+        //$topics = Topic::withOrder($request->order)->where('class_id', $klasse->id)->with('user', 'klasse')->paginate(12);
     }
 
     public function uploadImage(Request $request, ImageUploadHandler $uploader)

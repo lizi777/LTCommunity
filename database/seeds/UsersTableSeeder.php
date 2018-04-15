@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Models\User;
+use App\Models\Klasse;
 
 class UsersTableSeeder extends Seeder
 {
@@ -20,21 +21,45 @@ class UsersTableSeeder extends Seeder
             'https://fsdhubcdn.phphub.org/uploads/images/201710/14/1/NDnzMutoxX.png?imageView2/1/w/200/h/200',
         ];
 
+        $Klasse_ids = Klasse::all()->pluck('id')->toArray();
         // 生成数据集合
         $users = factory(User::class)
                         ->times(10)
                         ->make()
                         ->each(function ($user, $index)
-                            use ($faker, $avatars)
+                            use ($faker, $avatars, $Klasse_ids)
         {
             // 从头像数组中随机取出一个并赋值
             $user->avatar = $faker->randomElement($avatars);
+
+            $user->class_id = $faker->randomElement($Klasse_ids);
+
+            $user->area_id = 1;
         });
 
         // 让隐藏字段可见，并将数据集合转换为数组
         $user_array = $users->makeVisible(['password', 'remember_token'])->toArray();
 
         // 插入到数据库中
+        User::insert($user_array);
+
+        // 生成并插入第二个校区假数据
+        $users = factory(User::class)
+                        ->times(10)
+                        ->make()
+                        ->each(function ($user, $index)
+                            use ($faker, $avatars, $Klasse_ids)
+        {
+
+            $user->avatar = $faker->randomElement($avatars);
+
+            $user->class_id = $faker->randomElement($Klasse_ids);
+
+            $user->area_id = 2;
+        });
+
+        $user_array = $users->makeVisible(['password', 'remember_token'])->toArray();
+
         User::insert($user_array);
 
         // 单独处理第一个用户的数据

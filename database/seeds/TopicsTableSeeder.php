@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Models\Topic;
 use App\Models\User;
+use App\Models\Area;
 use App\Models\Klasse;
 
 class TopicsTableSeeder extends Seeder
@@ -11,9 +12,8 @@ class TopicsTableSeeder extends Seeder
     {
         // 所有用户 ID 数组，如：[1,2,3,4]
         $user_ids = User::all()->pluck('id')->toArray();
-
+        $area_ids = Area::all()->pluck('id')->toArray();
         // 所有班级 ID 数组，如：[1,2,3,4]
-        $Klasse_ids = Klasse::all()->pluck('id')->toArray();
 
         // 获取 Faker 实例
         $faker = app(Faker\Generator::class);
@@ -22,13 +22,13 @@ class TopicsTableSeeder extends Seeder
                         ->times(100)
                         ->make()
                         ->each(function ($topic, $index)
-                            use ($user_ids, $Klasse_ids, $faker)
+                            use ($user_ids, $area_ids, $faker)
         {
             // 从用户 ID 数组中随机取出一个并赋值
             $topic->user_id = $faker->randomElement($user_ids);
-
-            // 话题分类，同上
-            $topic->class_id = $faker->randomElement($Klasse_ids);
+            $topic->area_id = $faker->randomElement($area_ids);
+            // 班级
+            $topic->class_id = User::where('id', $topic->user_id)->first()->class_id;
         });
 
         // 将数据集合转换为数组，并插入到数据库中

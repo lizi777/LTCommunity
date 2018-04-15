@@ -12,7 +12,7 @@
 
             <!-- Branding Image -->
             <a class="navbar-brand" href="{{ url('/') }}">
-                蓝天教育社区 - 罗湖翠竹分校
+                蓝天教育社区 - {{ Auth::user()->area()->first()->name }}
             </a>
         </div>
 
