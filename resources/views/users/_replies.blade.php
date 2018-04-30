@@ -19,8 +19,10 @@
 </ul>
 
 @else
-   <div class="empty-block">暂无数据 ~_~ </div>
-@endif
+    <div class="alert alert-info" style="margin-top: 10px">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        暂时还没有回复哦~_~
+    </div>@endif
 
 {{-- 分页 --}}
 {!! $replies->appends(Request::except('page'))->render() !!}

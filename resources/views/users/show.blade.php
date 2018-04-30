@@ -5,7 +5,6 @@
 @section('content')
 
 <div class="row">
-
     <div class="col-lg-3 col-md-3 hidden-sm hidden-xs user-info">
         <div class="panel panel-default">
             <div class="panel-body">
@@ -16,7 +15,11 @@
                     <div class="media-body">
                         <hr>
                         <h4><strong>个人简介</strong></h4>
+                        @if($user->introduciton != null)
                         <p>{{ $user->introduction }}</p>
+                        @else
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;该用户很懒，没有留下任何东西。</p>
+                        @endif
                         <hr>
                         <h4><strong>注册于&nbsp;&nbsp;<small>{{ $user->created_at->diffForHumans() }}</small></strong></h4>
                         

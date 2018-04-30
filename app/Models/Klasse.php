@@ -9,4 +9,9 @@ class Klasse extends Model
     protected $fillable = [
     	'area', 'name',
     ];
+
+    public function Klasses()
+    {
+        return $this->belongsTo(Area::class,'area','id');
+    }
 }

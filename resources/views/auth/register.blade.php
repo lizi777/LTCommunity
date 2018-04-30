@@ -60,7 +60,7 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                             </div>
                         </div>
-
+                        
                         <div class="form-group {{ $errors->has('captcha') ? ' has-error' : '' }}">
                             <label for="captcha" class="col-md-3 control-label">验证码</label>
 
@@ -83,7 +83,7 @@
                                 </div>
                                 <div class="col-md-4 col-md-offset-2">
                                     <button type="submit" class="btn btn-primary register-bottom">
-                                        Register
+                                        注册 <i class="glyphicon glyphicon-arrow-right"></i>
                                     </button>
                                 </div>
                             </div>

@@ -56,6 +56,11 @@ class RegisterController extends Controller
             'captcha.captcha' => '请输入正确的验证码',
         ]);
     }
+    
+    public function mews() {
+        ob_clean();
+        return Captcha::create('default');
+    }
 
     /**
      * Create a new user instance after a valid registration.

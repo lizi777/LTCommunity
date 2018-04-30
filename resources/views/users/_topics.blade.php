@@ -16,7 +16,10 @@
 </ul>
 
 @else
-   <div class="empty-block">暂无数据 ~_~ </div>
+    <div class="alert alert-info" style="margin-top: 10px">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        暂时还没有帖子哦~_~
+    </div>
 @endif
 
 {{-- 分页 --}}

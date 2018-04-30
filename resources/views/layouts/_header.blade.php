@@ -12,7 +12,10 @@
 
             <!-- Branding Image -->
             <a class="navbar-brand" href="{{ url('/') }}">
-                蓝天教育社区 - {{ Auth::user()->area()->first()->name }}
+                蓝天教育社区
+                @guest
+                @else - {{ Auth::user()->area()->first()->name }}
+                @endguest 
             </a>
         </div>
 
@@ -80,6 +83,7 @@
 
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 {{ csrf_field() }}
+                                {{ method_field('DELETE') }}
                             </form>
                         </li>
                     </ul>

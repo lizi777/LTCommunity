@@ -12,20 +12,26 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/home');
 });
 
 Route::get('/home','LoginPagesController@home');
-//Route::get('/home','StaticPagesController@home');
 Route::get('/help','StaticPagesController@help');
 Route::get('/about','StaticPagesController@about');
 
-
+Route::get('/signup', 'UsersController@create')->name('signup');
+Route::post('/store', 'UsersController@store')->name('users.store');
+Route::post('/signup/classes','UsersController@classes')->name('users.classes');
 // Authentication Routes...
 //Auth::routes();
-Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
-Route::post('login', 'Auth\LoginController@login');
-Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+// Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+// Route::post('login', 'Auth\LoginController@login');
+// Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+
+//Reconfiguration Auth
+Route::get('login', 'SessionsController@create')->name('login');
+Route::post('login', 'SessionsController@store')->name('login');
+Route::delete('logout', 'SessionsController@destroy')->name('logout');
 
 // Registration Routes...
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
