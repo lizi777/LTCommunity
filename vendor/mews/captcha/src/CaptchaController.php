@@ -4,6 +4,7 @@ namespace Mews\Captcha;
 
 use Illuminate\Routing\Controller;
 
+
 /**
  * Class CaptchaController
  * @package Mews\Captcha
