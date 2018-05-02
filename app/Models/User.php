@@ -30,6 +30,7 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+
     public static function boot()
     {
         parent::boot();
@@ -38,6 +39,7 @@ class User extends Authenticatable
             $user->activation_token = str_random(30);
         });
     }
+    
     public function topics()
     {
         return $this->hasMany(Topic::class);

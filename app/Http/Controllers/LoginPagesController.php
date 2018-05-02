@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 
 class LoginPagesController extends Controller
 {
     public function home(){
-			return view('auth/login');
-
-		}
+	    	if(Auth::check()){
+	    		return redirect(route('topics.index'));
+	    	}
+			return view('sessions.create');
+    	}
 }
