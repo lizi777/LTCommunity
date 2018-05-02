@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use vendor\mews\captcha\src\Captcha;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use Auth;	
@@ -55,9 +54,4 @@ class SessionsController extends Controller
         return redirect('login');
     }
 
-	public function getCaptcha(Captcha $captcha, $config = 'default')
-	{
-		ob_clean();
-		return $captcha->create($config);
-	}
 }
