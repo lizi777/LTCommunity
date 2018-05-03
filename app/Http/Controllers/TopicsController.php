@@ -45,6 +45,7 @@ class TopicsController extends Controller
         $user = Auth::user();
 		$topic->user_id = $user->id;
 		$topic->class_id = $user->class_id;
+        $topic->area_id = $user->area_id;
 		$topic->excerpt = 1;
         $topic->save();
 
