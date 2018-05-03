@@ -12,6 +12,7 @@ class CreateActivitiesTable extends Migration
             $table->integer('area')->unsigned()->index()->default(0);
             $table->string('title')->index();
             $table->text('content');
+            $table->text('excerpt');
             $table->timestamps();
         });
 	}

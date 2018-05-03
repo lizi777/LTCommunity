@@ -42,7 +42,7 @@
             </li>
 
             @if ( ! $loop->last)
-                <hr>
+                <hr >
             @endif
 
         @endforeach

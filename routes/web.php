@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/','LoginPagesController@home');
+Route::get('/','LoginPagesController@homePage');
 Route::get('/home','LoginPagesController@home');
 // Route::get('/help','StaticPagesController@help');
 // Route::get('/about','StaticPagesController@about');
@@ -56,8 +56,11 @@ Route::get('topics/{topic}/{slug?}','TopicsController@show')->name('topics.show'
 
 //Klasses Routes...
 //Route::resource('klasses', 'KlassesController', ['only' => ['show']]);
-Route::get('/klasses/{klasse}','KlassesController@show') -> name('klasses.show');
+
+Route::get('/klasses/{klasse?}','KlassesController@show') -> name('klasses.show');
 
 //Image Upload...
-Route::post('upload_image', 'TopicsController@uploadImage')->name('topics.upload_image');
+Route::post('/topics/upload_image', 'TopicsController@uploadImage')->name('topics.upload_image');
 Route::resource('replies', 'RepliesController', ['only' => ['index', 'show', 'create', 'store', 'update', 'edit', 'destroy']]);
+Route::resource('activities', 'ActivitiesController', ['only' => ['index', 'show', 'create', 'store', 'update', 'edit', 'destroy']]);
+Route::post('/activities/upload_image', 'ActivitiesController@uploadImage')->name('activities.upload_image');

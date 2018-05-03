@@ -14,4 +14,9 @@ class Klasse extends Model
     {
         return $this->belongsTo(Area::class,'area','id');
     }
+
+    public function users()
+    {
+        return $this->hasMany(User::class,'class_id','id');
+    }
 }

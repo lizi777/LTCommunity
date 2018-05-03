@@ -6,6 +6,7 @@ use App\Models\Class;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ClassRequest;
+use Auth;
 
 class ClassesController extends Controller
 {
@@ -16,7 +17,7 @@ class ClassesController extends Controller
 
 	public function index()
 	{
-		$classes = Class::paginate();
+		$classes = Auth::user()->belongsToClass()->first();
 		return view('classes.index', compact('classes'));
 	}
 

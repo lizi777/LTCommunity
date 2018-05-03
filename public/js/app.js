@@ -978,7 +978,7 @@ module.exports = __webpack_require__(42);
  */
 
 __webpack_require__(11);
-
+// require('')
 window.Vue = __webpack_require__(35);
 
 /**

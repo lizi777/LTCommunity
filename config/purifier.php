@@ -15,5 +15,10 @@ return [
             'AutoFormat.AutoParagraph' => true,
             'AutoFormat.RemoveEmpty'   => true,
         ],
+        'activity_excerpt' => [
+            'HTML.Doctype'             => 'XHTML 1.0 Transitional',
+            'HTML.Allowed'             => 'h2,h3,a',
+            'AutoFormat.RemoveEmpty'   => true,
+        ],
     ],
 ];

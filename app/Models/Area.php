@@ -15,4 +15,9 @@ class Area extends Model
     {
         return $this->hasMany(Klasse::class,'area','id');
     }
+
+    public function hasManyActivity()
+    {
+        return $this->hasMany(Activity::class,'area','id');
+    }
 }

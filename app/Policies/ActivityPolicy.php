@@ -9,12 +9,11 @@ class ActivityPolicy extends Policy
 {
     public function update(User $user, Activity $activity)
     {
-        // return $activity->user_id == $user->id;
-        return true;
+    	return true;
     }
 
     public function destroy(User $user, Activity $activity)
     {
-        return true;
+		return true;
     }
 }

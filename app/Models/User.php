@@ -39,7 +39,7 @@ class User extends Authenticatable
             $user->activation_token = str_random(30);
         });
     }
-    
+
     public function topics()
     {
         return $this->hasMany(Topic::class);
@@ -55,4 +55,13 @@ class User extends Authenticatable
         return $this->belongsTo(Area::class,'area_id','id');
     }
 
+    public function belongsToClass()
+    {
+        return $this->belongsTo(Klasse::class,'class_id','id');
+    }
+    
+    public function isAuthorOf($model)
+    {
+        return $this->id == $model->user_id;
+    }
 }

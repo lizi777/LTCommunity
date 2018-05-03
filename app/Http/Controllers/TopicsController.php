@@ -42,8 +42,9 @@ class TopicsController extends Controller
 	public function store(TopicRequest $request,Topic $topic)
 	{
 		$topic->fill($request->all());
-		$topic->user_id = Auth::id();
-		$topic->class_id = 1;
+        $user = Auth::user();
+		$topic->user_id = $user->id;
+		$topic->class_id = $user->class_id;
 		$topic->excerpt = 1;
         $topic->save();
 
@@ -62,7 +63,7 @@ class TopicsController extends Controller
 
 		$topic->update($request->all());
 
-		return redirect()->to($topic->link())->with('message', 'Updated successfully.');
+		return redirect()->to($topic->link())->with('success', '修改成功！');
 	}
 
 	public function destroy(Topic $topic)
@@ -70,7 +71,7 @@ class TopicsController extends Controller
 		$this->authorize('destroy', $topic);
 		$topic->delete();
 
-		return redirect()->to($topic->link())->with('message', 'Deleted successfully.');
+		return redirect(route('topics.index'))->with('success', '删除成功！');
 	}
 
 
