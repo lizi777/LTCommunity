@@ -25,6 +25,23 @@ class SeedKlassesData extends Migration
                 'name'        => '期末提高班1班',
                 'area' => '1',
             ],
+
+            [
+                'name'        => '物理1班',
+                'area' => '2',
+            ],
+            [
+                'name'        => '小升初1班',
+                'area' => '2',
+            ],
+            [
+                'name'        => '数学1班',
+                'area' => '2',
+            ],
+            [
+                'name'        => '语文1班',
+                'area' => '2',
+            ],
         ];
 
         DB::table('klasses')->insert($klasses);

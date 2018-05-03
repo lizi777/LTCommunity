@@ -14,8 +14,7 @@ class AddClassIdAndAreaIdToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('class_id')->nullable();
-            $table->string('area_id')->nullable();
+
         });
     }
 
@@ -27,8 +26,7 @@ class AddClassIdAndAreaIdToUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('class_id');
-            $table->dropColumn('area_id');
+
         });
     }
 }
