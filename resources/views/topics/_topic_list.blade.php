@@ -25,7 +25,7 @@
 
                         <a href="{{ route('klasses.show', $topic->klasse->id) }}" title="{{ $topic->klasse->name }}">
                             <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-                             {{ $topic->klasse->name }}
+                             {{ $topic->user->belongsToClass->name }}
                         </a>
 
                         <span> • </span>

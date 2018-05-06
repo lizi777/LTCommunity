@@ -10,7 +10,7 @@ class Klasse extends Model
     	'area', 'name',
     ];
 
-    public function Klasses()
+    public function belongsToArea()
     {
         return $this->belongsTo(Area::class,'area','id');
     }

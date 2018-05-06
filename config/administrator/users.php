@@ -16,7 +16,7 @@ return [
     // 返回 True 即通过权限验证，False 则无权访问并从 Menu 中隐藏
     'permission'=> function()
     {
-        return Auth::user()->can('manage_users');
+        return Auth::user()->can('manage_contents');
     },
 
     // 字段负责渲染『数据表格』，由无数的『列』组成，
@@ -41,7 +41,9 @@ return [
 
         'name' => [
             'title'    => '用户名',
+
             'sortable' => false,
+
             'output' => function ($name, $model) {
                 return '<a href="/users/'.$model->id.'" target=_blank>'.$name.'</a>';
             },
@@ -105,4 +107,12 @@ return [
             'title' => '邮箱',
         ],
     ],
+
+    'query_filter'=> function($query)
+    {
+        if (Auth::user()->can('areas_manege'))
+        {
+            $query->where('area_id',Auth::user()->first()->area_id);
+        }
+    },
 ];

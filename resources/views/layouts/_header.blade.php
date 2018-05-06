@@ -24,7 +24,7 @@
             <ul class="nav navbar-nav">
                 <li class={{ active_class(if_route('topics.index')) }}><a href="{{ route('topics.index') }}">话题</a></li>
                 <li class={{ active_class(if_route('klasses.show')) }}><a href="{{ route('klasses.show') }}">班级讨论</a></li>
-                <li class={{ active_class(if_route('users.show')) }}><a href="{{ route('topics.index') }}">资源分享</a></li>
+                <li class={{ active_class(if_route('fileuploads.index')) }}><a href="{{ route('fileuploads.index') }}">资源分享</a></li>
                 <li class={{ active_class(if_route('activities.index')) }}><a href="{{ route('activities.index') }}">校区公告</a></li>
             </ul>
             

@@ -17,6 +17,7 @@ class ActivityObserver
     public function saving(Activity $activity)
     {
     	$activity->content = clean($activity->content, 'user_topic_body');
+    	$content = 
         $activity->excerpt = make_excerpt(clean($activity->content, 'activity_excerpt'));
     }
 

@@ -31,7 +31,7 @@
                                 >
                                     <td width="5%" class="text-center"><strong>{{$keys+1}}</strong></td>
 
-                                    <td width="20%">{{$activity->belongsToArea()->first()->name}}</td> <td width="20%">{{$activity->title}}</td> <td>{{$activity->excerpt}}</td>
+                                    <td width="12%">{{$activity->belongsToArea()->first()->name}}</td> <td width="25%">{{$activity->title}}</td> <td>{{$activity->excerpt}}</td>
                                     
                                     <td width="13%" class="text-right">
 <!--                                         <a class="btn btn-xs btn-primary" href="{{ route('activities.show', $activity->id) }}">
