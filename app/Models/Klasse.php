@@ -19,4 +19,9 @@ class Klasse extends Model
     {
         return $this->hasMany(User::class,'class_id','id');
     }
+
+    public function fileuploads()
+    {
+        return $this->hasMany(Fileupload::class,'class_id','id');
+    }
 }

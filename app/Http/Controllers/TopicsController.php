@@ -10,12 +10,15 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\TopicRequest;
 use App\Handlers\ImageUploadHandler;
 use Auth;
+use App\Markdown\Markdown;
 
 class TopicsController extends Controller
 {
-    public function __construct()
+    protected $markdown ;
+    public function __construct(Markdown $markdown)
     {
         $this->middleware('auth', ['except' => ['index', 'show']]);
+        $this->markdown = $markdown;
     }
 
 	// public function index()
@@ -26,12 +29,15 @@ class TopicsController extends Controller
 
     public function show(Request $request,Topic $topic)
     {
+
         // URL 矫正
         if ( ! empty($topic->slug) && $topic->slug != $request->slug) {
             return redirect($topic->link(), 301);
         }
 
-        return view('topics.show', compact('topic'));
+        $html = $this->markdown->markdown($topic->body);
+
+        return view('topics.show', compact('topic','html'));
     }
 
 	public function create(Topic $topic)
@@ -79,17 +85,12 @@ class TopicsController extends Controller
 	public function index(Request $request, Topic $topic)
     {
        
-            if( Auth::user() && Auth::user()->area_id != 0){
+            if( Auth::user() && !Auth::user()->hasRole('Founder')){
                 $area = Auth::user()->area()->first()->id;
-                $topics = $topic->withOrder($request->order)->where('area_id',$area)->with('user.belongsToClass')->paginate(12);
+                $topics = $topic->withOrder($request->order)->where('area_id',$area)->with('user.belongsToClass')->paginate(8);
             }
             else { 
-                // $topics = Area::with('users')->with('topics')->paginate(12);
-                $topics = $topic->withOrder($request->order)->with('user.belongsToClass')->paginate(12);
-                
-                //dd($topics);
-                //$topics = $topic->withOrder($request->order)->where('area_id',$area)->paginate(12);
-                //return view('topics.index', compact('topics'));
+                $topics = $topic->withOrder($request->order)->with('user.belongsToClass')->paginate(8);
             }
 
         return view('topics.index', compact('topics'));

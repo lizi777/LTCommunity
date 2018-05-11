@@ -17,6 +17,7 @@ class CreateKlassesTable extends Migration
             $table->increments('id');
             $table->integer('area')->unsigned()->default(0)->index()->comment('校区');
             $table->string('name')->index()->comment('班级名字');
+            $table->string('notice')->default('暂无');
             $table->timestamps();
         });
     }

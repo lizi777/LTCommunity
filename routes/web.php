@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/','LoginPagesController@homePage');
+Route::get('/','LoginPagesController@homePage')->name('home');
 Route::get('/home','LoginPagesController@home');
 // Route::get('/help','StaticPagesController@help');
 // Route::get('/about','StaticPagesController@about');
@@ -66,5 +66,7 @@ Route::post('/activities/upload_image', 'ActivitiesController@uploadImage')->nam
 
 
 Route::get('/klasses/{klasse?}','KlassesController@show') -> name('klasses.show');
-Route::resource('replies', 'RepliesController', ['only' => ['index', 'show', 'create', 'store', 'update', 'edit', 'destroy']]);
+Route::resource('replies', 'RepliesController', ['only' => ['store', 'destroy']]);
 Route::resource('fileuploads', 'FileuploadsController', ['only' => ['index', 'show', 'create', 'store', 'update', 'edit', 'destroy']]);
+
+Route::resource('notifications', 'NotificationsController', ['only' => ['index']]);

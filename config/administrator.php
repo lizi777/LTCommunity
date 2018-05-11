@@ -42,9 +42,13 @@ return array(
         ],
         '校区班级管理' => [
             'klasses',
+            'areas',
         ],
-        '分享与回复管理' => [
+        '站点内容管理' => [
             'topics',
+            // 'replies',
+            'activities',
+            'fileupload',
         ],
     ],
 

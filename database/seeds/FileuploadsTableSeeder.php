@@ -7,13 +7,13 @@ class FileuploadsTableSeeder extends Seeder
 {
     public function run()
     {
-        $fileuploads = factory(Fileupload::class)->times(50)->make()->each(function ($fileupload, $index) {
-            if ($index == 0) {
-                // $fileupload->field = 'value';
-            }
-        });
+        // $fileuploads = factory(Fileupload::class)->times(50)->make()->each(function ($fileupload, $index) {
+        //     if ($index == 0) {
+        //         // $fileupload->field = 'value';
+        //     }
+        // });
 
-        Fileupload::insert($fileuploads->toArray());
+        // Fileupload::insert($fileuploads->toArray());
     }
 
 }

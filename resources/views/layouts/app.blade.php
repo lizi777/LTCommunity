@@ -9,7 +9,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title', '蓝天教育社区') - 罗湖翠竹分校</title>
+    <title>@yield('title', '蓝天教育社区') - 蓝天教育社区</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -21,11 +21,10 @@
 
         @include('layouts._header')
 
-        <div class="container">
-            @include('layouts._message')
-            @yield('content')
 
-        </div>
+        @include('layouts._message')
+        @yield('content')
+
 
         @include('layouts._footer')
     </div>

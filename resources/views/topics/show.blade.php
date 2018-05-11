@@ -1,19 +1,20 @@
 @extends('layouts.app')
 
-@section('title', $topic->title)
+@section('title', $topic->excerpt)
 @section('description', $topic->excerpt)
 
 @section('content')
 
+<div class="container">
 <div class="row">
 
     <div class="col-lg-3 col-md-3 hidden-sm hidden-xs author-info">
         <div class="panel panel-default">
-            <div class="panel-body">
+            <div class="panel-body"@if($topic->user->is_teacher)style="background-color:#fff5f5"@endif  >
                 <div class="text-center">
                     作者：{{ $topic->user->name }}
                 </div>
-                <hr>
+                <hr style="margin: 10px;">
                 <div class="media">
                     <div align="center">
                         <a href="{{ route('users.show', $topic->user->id) }}">
@@ -72,5 +73,6 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 @stop

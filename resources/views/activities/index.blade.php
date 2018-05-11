@@ -1,13 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="container">
     <div class="col-md-10 col-md-offset-1">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4>
                     <i class="glyphicon glyphicon-align-justify"></i> 活动列表
+                    @if(Auth::user()->hasRole('Maintainer'))
                     <a class="btn btn-success pull-right" href="{{ route('activities.create') }}"><i class="glyphicon glyphicon-plus"></i> 创建活动</a>
+                    @endif
                 </h4>
             </div>
 
@@ -37,7 +40,7 @@
 <!--                                         <a class="btn btn-xs btn-primary" href="{{ route('activities.show', $activity->id) }}">
                                             <i class="glyphicon glyphicon-eye-open"></i> 
                                         </a> -->
-                                        
+                                        @if(Auth::user()->hasRole('Maintainer'))
                                         <a class="btn btn-xs btn-warning" href="{{ route('activities.edit', $activity->id) }}">
                                             <i class="glyphicon glyphicon-edit"></i> 
                                         </a>
@@ -48,6 +51,7 @@
 
                                             <button type="submit" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i> </button>
                                         </form>
+                                        @endif
                                     </td>
                                 </tr>
                                 </a>

@@ -14,13 +14,14 @@
                     </a>
                     <span> &nbsp;•&nbsp;  </span>
                     <span class="meta" title="{{ $reply->created_at }}">{{ $reply->created_at->diffForHumans() }}</span>
-
+                    @can('showDelete', [$reply, $topic])
                     {{-- 回复删除按钮 --}}
                     <span class="meta pull-right">
-                        <a title="删除回复">
+                        <a href="{{route('replies.destroy',$reply->id)}}" onclick="return confirm('删除后无法恢复！确定要删除吗？');" title="删除回复">
                         <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                         </a>
                     </span>
+                    @endcan
                 </div>
                 <div class="reply-content">
                     {!! $reply->content !!}

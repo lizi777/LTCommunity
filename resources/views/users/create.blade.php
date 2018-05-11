@@ -2,6 +2,7 @@
 @section('title', '注册')
 
 @section('content')
+<div class="container">
 <div class="col-md-offset-2 col-md-8">
   <div class="panel panel-default">
     <div class="panel-heading" style="background-color: #f0f0f0">
@@ -51,6 +52,7 @@
       </form>
     </div>
   </div>
+</div>
 </div>
 @stop
 

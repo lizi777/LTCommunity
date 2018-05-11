@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', '信息编辑 ')
+
 @section('content')
 
 

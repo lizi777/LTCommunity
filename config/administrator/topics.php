@@ -64,7 +64,7 @@ return [
 
             'options_filter' => function($query)
             {
-                if (!Auth::user()->can('areas_manege'))
+                if (!Auth::user()->hasRole('Founder'))
                 {
                     $query->where('area_id',Auth::user()->first()->area_id);
                 }
@@ -79,7 +79,7 @@ return [
             'options_sort_field' => 'id',
             'options_filter' => function($query)
             {
-                if (!Auth::user()->can('areas_manege'))
+                if (!Auth::user()->hasRole('Founder'))
                 {
                     $query->where('area',Auth::user()->first()->area_id);
                 }
@@ -97,7 +97,7 @@ return [
             'title' => '标题',
             'options_filter' => function($query)
             {
-                if (!Auth::user()->can('areas_manege'))
+                if (!Auth::user()->hasRole('Founder'))
                 {
                     $query->where('area_id',Auth::user()->first()->area_id);
                 }
@@ -112,7 +112,7 @@ return [
             'options_sort_field' => 'id',
             'options_filter' => function($query)
             {
-                if (!Auth::user()->can('areas_manege'))
+                if (!Auth::user()->hasRole('Founder'))
                 {
                     $query->where('area_id',Auth::user()->first()->area_id);
                 }
@@ -126,7 +126,7 @@ return [
             'options_sort_field' => 'id',
             'options_filter' => function($query)
             {
-                if (!Auth::user()->can('areas_manege'))
+                if (!Auth::user()->hasRole('Founder'))
                 {
                     $query->where('area',Auth::user()->first()->area_id);
                 }
@@ -142,7 +142,7 @@ return [
     'query_filter'=> function($query)
     {
         $area = Auth::user()->first()->area_id;
-        if (!Auth::user()->can('areas_manege'))
+        if (!Auth::user()->hasRole('Founder'))
         {
             $query->where('area_id',$area);
         }

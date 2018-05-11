@@ -1,22 +1,26 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container" style="padding-left: 0px;">
-    <div class="col-md-12 " style="padding-left: 0px;">
+
+<div class="container">
+    <div class="col-md-10 col-md-offset-1">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3>
+                <h4>
                     <!-- <i class="glyphicon glyphicon-align-justify"></i> --> 
                 {{ Auth::user()->belongsToClass()->first()->name}}
+
+                @if(Auth::user()->is_teacher || Auth::user()->can('manage_contents'))
                     <a class="btn btn-success pull-right" onclick="$('#fileModal').modal()">
                         <i class="glyphicon glyphicon-plus"></i> 上传文件
                     </a>
-                </h3>
+                @endif
+                </h4>
             </div>
 
             <div class="panel-body">
                 @if($fileuploads->count())
-                    <table class="table table-condensed table-striped">
+                    <table class="table table-condensed">
                         <thead>
                             <tr>
                                 <th class="text-center">#</th>
@@ -27,18 +31,24 @@
 
                         <tbody>
                             @foreach($fileuploads as $keys=>$fileupload)
-                                <tr>
+                                <tr class="@if($keys%5 == 0)success
+                                @elseif($keys%4 == 1)danger
+                                @elseif($keys%4 == 2)warning
+                                @elseif($keys%4 == 3)info
+                                @endif
+                                ">
                                     <td class="text-center"><strong>{{$keys+1}}</strong></td> 
                                     <td><a href="{{$fileupload->filepath}}">{{$fileupload->filename}}</a></td> 
                                     
                                     <td class="text-right">
-
-                                        <form action="{{ route('fileuploads.destroy', $fileupload->id) }}" method="POST" style="display: inline;" onsubmit="return confirm('Delete? Are you sure?');">
+                                        @if(Auth::user()->is_teacher || Auth::user()->can('manage_contents'))
+                                        <form action="{{ route('fileuploads.destroy', $fileupload->id) }}" method="POST" style="display: inline;" onsubmit="return confirm('删除后无法恢复！确定要删除?');">
                                             {{csrf_field()}}
                                             <input type="hidden" name="_method" value="DELETE">
 
                                             <button type="submit" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i> </button>
                                         </form>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach

@@ -13,7 +13,7 @@ class TopicsTableSeeder extends Seeder
         // 所有用户 ID 数组，如：[1,2,3,4]
         $user_ids = User::all()->pluck('id')->toArray();
         // 所有班级 ID 数组，如：[1,2,3,4]
-
+        $area_ids = [1,2];
         // 获取 Faker 实例
         $faker = app(Faker\Generator::class);
 

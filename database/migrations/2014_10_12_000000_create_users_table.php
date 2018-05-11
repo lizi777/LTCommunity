@@ -20,13 +20,14 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-            $table->string('class_id')->nullable();
-            $table->string('area_id')->nullable();
+            $table->integer('class_id')->unsigned()->default(1);
+            $table->integer('area_id')->unsigned()->default(1);
             $table->string('activation_token')->nullable();
             $table->boolean('activated')->default(false);
             $table->boolean('is_teacher')->default(false);
             $table->string('avatar')->nullable();
             $table->string('introduction')->nullable();
+            $table->integer('notification_count')->unsigned()->default(0);
         });
     }
 

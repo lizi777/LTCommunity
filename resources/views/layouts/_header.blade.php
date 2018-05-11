@@ -1,4 +1,6 @@
-<nav class="navbar navbar-default navbar-static-top">
+<nav class="navbar navbar-default navbar-static-top 
+@if(if_route('home')) mb-0 @endif
+">
     <div class="container">
         <div class="navbar-header">
 
@@ -23,11 +25,15 @@
             <!-- Left Side Of Navbar -->
             <ul class="nav navbar-nav">
                 <li class={{ active_class(if_route('topics.index')) }}><a href="{{ route('topics.index') }}">话题</a></li>
-                <li class={{ active_class(if_route('klasses.show')) }}><a href="{{ route('klasses.show') }}">班级讨论</a></li>
-                <li class={{ active_class(if_route('fileuploads.index')) }}><a href="{{ route('fileuploads.index') }}">资源分享</a></li>
-                <li class={{ active_class(if_route('activities.index')) }}><a href="{{ route('activities.index') }}">校区公告</a></li>
+                <li class={{ active_class(if_route('klasses.show')) }}><a href="{{ route('klasses.show') }}">班级</a></li>
+                <li class={{ active_class(if_route('fileuploads.index')) }}><a href="{{ route('fileuploads.index') }}">资源</a></li>
+                <li class={{ active_class(if_route('activities.index')) }}><a href="{{ route('activities.index') }}">活动</a></li>
             </ul>
-            
+            <form method="GET" action="#" accept-charset="UTF-8" class="navbar-form navbar-left hidden-sm hidden-md">
+                <div class="form-group">
+                  <input class="form-control search-input mac-style" placeholder="搜索" style="margin: 0" name="q" type="text" value="">
+                </div>
+            </form>
             <!-- Right Side Of Navbar -->
             <ul class="nav navbar-nav navbar-right">
             @guest
@@ -41,6 +47,14 @@
                         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                     </a>
                 </li>
+                {{-- 消息通知标记 --}}
+                    <li>
+                        <a href="{{ route('notifications.index') }}" class="notifications-badge" style="margin-top: -2px;">
+                            <span class="badge badge-{{ Auth::user()->notification_count > 0 ? 'hint' : 'fade' }} " title="消息提醒">
+                                {{ Auth::user()->notification_count }}
+                            </span>
+                        </a>
+                    </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                             <span class="user-avatar pull-left" style="margin-right:8px; margin-top:-5px;">

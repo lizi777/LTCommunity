@@ -13,28 +13,20 @@ class FileuploadsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['index', 'show']]);
+        $this->middleware('auth');
     }
 
 	public function index()
 	{
-		$fileuploads = Fileupload::paginate(5);
+
+		$fileuploads = Fileupload::where('class_id',Auth::user()->class_id)->paginate(12);
 		return view('fileuploads.index', compact('fileuploads'));
 	}
 
-    public function show(Fileupload $fileupload)
-    {
-        return view('fileuploads.show', compact('fileupload'));
-    }
-
-	public function create(Fileupload $fileupload)
-	{
-		return view('fileuploads.create_and_edit', compact('fileupload'));
-	}
 
 	public function store(FileuploadRequest $request, FileUploadHandler $uploader)
 	{
-// return dd($request->file->getClientOriginalName());
+		// return dd($request->file->getClientOriginalName());
     	$fileupload = Fileupload::create([
             'class_id' => Auth::user()->class_id,
             'filename' => $request->file->getClientOriginalName(),
@@ -42,30 +34,24 @@ class FileuploadsController extends Controller
         ]);
 
 		//$fileupload = Fileupload::create($request->all());
-		
-		
+				
 		return redirect()->route('fileuploads.index')->with('success', '上传成功！');
 	}
 
-	public function edit(Fileupload $fileupload)
-	{
-        $this->authorize('update', $fileupload);
-		return view('fileuploads.create_and_edit', compact('fileupload'));
-	}
 
-	public function update(FileuploadRequest $request, Fileupload $fileupload)
-	{
-		$this->authorize('update', $fileupload);
-		$fileupload->update($request->all());
+	// public function update(FileuploadRequest $request, Fileupload $fileupload)
+	// {
+	// 	$this->authorize('update', $fileupload);
+	// 	$fileupload->update($request->all());
 
-		return redirect()->route('fileuploads.show', $fileupload->id)->with('message', 'Updated successfully.');
-	}
+	// 	return redirect()->route('fileuploads.show', $fileupload->id)->with('message', '修改成功！');
+	// }
 
 	public function destroy(Fileupload $fileupload)
 	{
 		$this->authorize('destroy', $fileupload);
 		$fileupload->delete();
 
-		return redirect()->route('fileuploads.index')->with('message', 'Deleted successfully.');
+		return redirect()->route('fileuploads.index')->with('message', '删除成功！');
 	}
 }

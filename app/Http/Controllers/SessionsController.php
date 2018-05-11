@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use Auth;	
+use Auth;
+use Hash;
+use App\Models\User;	
 
 class SessionsController extends Controller
 {
@@ -32,8 +34,11 @@ class SessionsController extends Controller
            'email' => 'required|email|max:255',
            'password' => 'required',
        ]);
-
-       if (Auth::attempt($credentials, $request->has('remember'))) {
+      $user = User::where('email',$request->email)->first();
+       if(Hash::check($request->password, $user->password)){
+            Auth::login($user);
+       
+       // if (Auth::attempt($credentials, $request->has('remember'))) {
        	    if(Auth::user()->activated) {
                session()->flash('success', '欢迎回来！');
                return redirect()->intended(route('users.show', [Auth::user()]));

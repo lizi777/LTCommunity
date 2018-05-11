@@ -7,14 +7,13 @@ use App\Models\Fileupload;
 
 class FileuploadPolicy extends Policy
 {
-    public function update(User $user, Fileupload $fileupload)
+    public function update(User $user)
     {
-        // return $fileupload->user_id == $user->id;
-        return true;
+        return $user->is_teacher;
     }
 
     public function destroy(User $user, Fileupload $fileupload)
     {
-        return true;
+        return $user->is_teacher;
     }
 }

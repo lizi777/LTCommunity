@@ -52,7 +52,26 @@ return [
         'email' => [
             'title' => '邮箱',
         ],
-
+        'activated' => [
+            'title' => '激活',
+            'output' => function ($name, $model) {
+                if($model->activated){
+                    return '是';
+                }else{
+                    return '否';
+                }
+            },
+        ],
+        'is_teacher' => [
+            'title' => '教师',
+            'output' => function ($name, $model) {
+                if($model->is_teacher){
+                    return '是';
+                }else{
+                    return '否';
+                }
+            },
+        ],
         'operation' => [
             'title'  => '管理',
             'sortable' => false,
@@ -90,7 +109,56 @@ return [
 
             // 关联模型的字段，用来做关联显示
             'name_field' => 'name',
+
+            'editable' => function($model)
+            {
+                if($model->id == 1){
+                    return false;
+                }
+                return Auth::user()->hasRole('Founder');
+            },
         ],
+        'activated' => [
+            'title' => '是否激活',
+            'type'  => 'bool'
+        ],
+        'is_teacher' => [
+            'title' => '是否教师',
+            'type'  => 'bool'
+        ],
+        'area' => array(
+            'type' => 'relationship', 
+
+            'title' => '校区',
+
+            'name_field'         => 'name',
+
+            'search_fields'      => ["CONCAT(id, ' ', name)"],
+
+            'options_sort_field' => 'id',
+
+            'editable' => function($model)
+            {
+                return Auth::user()->hasRole('Founder');
+            },
+
+        ),
+        'belongsToClass' => array(
+            'type' => 'relationship', 
+
+            'title' => '班级',
+
+            'name_field'         => 'name',
+
+            'search_fields'      => ["CONCAT(id, ' ', name)"],
+
+            'options_sort_field' => 'id',
+
+            'editable' => function($model)
+            {
+                return Auth::user()->hasRole('Founder');
+            },
+        ),
     ],
 
     // 『数据过滤』设置
@@ -106,6 +174,10 @@ return [
         'email' => [
             'title' => '邮箱',
         ],
+        'activated' => [
+            'title' => '教师',
+            'type'  => 'bool'
+        ]
     ],
 
     'query_filter'=> function($query)
@@ -115,4 +187,17 @@ return [
             $query->where('area_id',Auth::user()->first()->area_id);
         }
     },
+
+    'rules'   => [
+        'name' => 'required|min:2',
+        'email' => 'required|email',
+        'class_id' => 'required',
+        'area_id' => 'required'
+    ],
+    'messages' => [
+        'name.required' => '请确保名字至少三个字符以上',
+        'email.required' => '必须输入邮箱',
+        'area_id.required' => '校区不能为空',
+        'class_id.required' => '班级不能为空',
+    ],
 ];

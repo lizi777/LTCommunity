@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Models;
+use Nicolaslopezj\Searchable\SearchableTrait;
+
 
 class Topic extends Model
 {

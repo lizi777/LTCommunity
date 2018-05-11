@@ -1,0 +1,33 @@
+tomcat配置的3种方式
+  1 将整个资源文件拖到tomcat目录下/webapps访问localhost/${catalog}/
+  2 修改server.xml
+  3 增加xx.xml到目录下修改配置
+
+http://120.77.85.249:8080/RegDemo/user/login.jsp
+
+867450
+
+onbeforeunload()
+
+update table set colum = ? where id = ?
+
+Statement & ResultSet
+  rs == a table
+  ResultSet.next() = Iterator.hasnext()+.next();
+
+网易云 q6663938
+阿里云 Ainchibelun
+斗鱼 13559778279
+B站 13559778279
+QQ  605498134
+崩坏2 13559778279
+世纪天成 c6663938
+
+php artisan make:scaffold Topic --schema="
+id:integer:index,class_name:string:index,user_id:integer:unsigned:index,class_id:integer:unsigned:index,reply_count:integer:unsigned:default(0),view_count:integer:unsigned:defau
+lt(0),last_reply_user_id:integer:unsigned:default(0),order:integer:unsigned:default(0),excerpt:text,slug:string:nullable
+"
+php artisan make:migration seed_classes_data
+klasse
+
+  

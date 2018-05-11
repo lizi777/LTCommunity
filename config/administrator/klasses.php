@@ -12,10 +12,15 @@ return [
         // 删除权限控制
         'delete' => function () {
 
-            return Auth::user()->hasRole('Founder');
+            return true;
         },
     ],
 
+    'permission'=> function()
+    {
+        return Auth::user()->can('manage_contents');
+    },
+    
     'columns' => [
         'id' => [
             'title' => 'ID',
@@ -44,7 +49,7 @@ return [
             'editable' => function($model)
             {
                 // return false;
-                return Auth::user()->can('areas_manege'); 
+                return Auth::user()->hasRole('Founder');
             },
 
             // 'value' => function($model){
@@ -73,7 +78,7 @@ return [
     'query_filter'=> function($query)
     {
         $area = Auth::user()->first()->area_id;
-        if (!Auth::user()->can('areas_manege'))
+        if (!Auth::user()->hasRole('Founder'))
         {
             $query->where('area',$area);
         }

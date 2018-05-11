@@ -30,7 +30,9 @@ class UsersTableSeeder extends Seeder
                             use ($faker, $avatars, $Klasse_ids)
         {
             // 从头像数组中随机取出一个并赋值
-            $user->avatar = $faker->randomElement($avatars);
+            $avatars = rand(1,5);
+
+            $user->avatar = config('app.url').'/uploads/default/avatar'.$avatars.'.jpg';
 
             $user->class_id = $faker->randomElement($Klasse_ids);
 
@@ -51,7 +53,9 @@ class UsersTableSeeder extends Seeder
                             use ($faker, $avatars, $Klasse_ids)
         {
 
-            $user->avatar = $faker->randomElement($avatars);
+            $avatars = rand(1,5);
+
+            $user->avatar = config('app.url').'/uploads/default/avatar'.$avatars.'.jpg';
 
             $user->class_id = $faker->randomElement($Klasse_ids);
 

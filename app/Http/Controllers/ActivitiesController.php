@@ -18,7 +18,7 @@ class ActivitiesController extends Controller
 
 	public function index(Activity $activitity)
 	{
-		$activities = $activitity->paginate();
+		$activities = $activitity->where('area',Auth::user()->area_id)->paginate(8);
 		return view('activities.index', compact('activities'));
 		//return dd($activities);
 	}
@@ -39,7 +39,7 @@ class ActivitiesController extends Controller
 		$activity->area = Auth::user()->area_id;
 		$activity->excerpt = make_excerpt($activity->content);
 		$activity->save();
-		return redirect()->route('activities.show', $activity->id)->with('message', 'Created successfully.');
+		return redirect()->route('activities.show', $activity->id)->with('message', '创建成功！');
 	}
 
 	public function edit(Activity $activity)
@@ -53,7 +53,7 @@ class ActivitiesController extends Controller
 		$this->authorize('update',$activity);
 		$activity->update($request->all());
 
-		return redirect()->route('activities.show', $activity->id)->with('message', 'Updated successfully.');
+		return redirect()->route('activities.show', $activity->id)->with('message', '更新成功！');
 	}
 
 	public function destroy(Activity $activity)
@@ -61,7 +61,7 @@ class ActivitiesController extends Controller
 		$this->authorize('destroy',$activity);
 		$activity->delete();
 
-		return redirect()->route('activities.index')->with('message', 'Deleted successfully.');
+		return redirect()->route('activities.index')->with('message', '删除成功！');
 	}
 
 	public function uploadImage(Request $request, ImageUploadHandler $uploader)

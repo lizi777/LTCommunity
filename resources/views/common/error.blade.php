@@ -1,4 +1,5 @@
 @if (count($errors) > 0)
+	<div class="container">
     <div class="alert alert-danger">
         <h5>有错误发生：</h5>
         <ul>
@@ -6,5 +7,6 @@
                 <li><i class="glyphicon glyphicon-remove"></i> {{ $error }}</li>
             @endforeach
         </ul>
+    </div>
     </div>
 @endif

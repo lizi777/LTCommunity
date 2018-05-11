@@ -18,4 +18,8 @@ class FileuploadObserver
     {
         //
     }
+
+    public function deleting(Fileupload $fileupload){
+    	//$fileupload->filepath
+    }
 }
