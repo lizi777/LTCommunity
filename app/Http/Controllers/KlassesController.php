@@ -28,4 +28,15 @@ class KlassesController extends Controller
 	    	return view('topics.index', compact('topics'));
 	    }
     }
+
+    public function update(Request $request,Klasse $klasse)
+	{
+
+		//$this->authorize('update', $class);
+		$klasse->notice = $request->notice;
+		$klasse->update();
+
+		return redirect()->route('klasses.show')->with('success', '公告修改成功！');
+	}
+
 }

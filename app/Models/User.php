@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
-
+use Nicolaslopezj\Searchable\SearchableTrait;
 use Auth;
 
 
@@ -16,8 +16,22 @@ class User extends Authenticatable
         notify as protected laravelNotify;
     }
 
+    use SearchableTrait;
     
-
+    protected $searchable = [
+        /**
+         * Columns and their priority in search results.
+         * Columns with higher values are more important.
+         * Columns with equal values have equal importance.
+         *
+         * @var array
+         */
+        'columns' => [
+            'users.name' => 10,
+            'users.email' => 10,
+            'users.introduction' => 7,
+        ],
+    ];
     /**
      * The attributes that are mass assignable.
      *

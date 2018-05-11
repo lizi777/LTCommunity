@@ -29,11 +29,13 @@
                 <li class={{ active_class(if_route('fileuploads.index')) }}><a href="{{ route('fileuploads.index') }}">资源</a></li>
                 <li class={{ active_class(if_route('activities.index')) }}><a href="{{ route('activities.index') }}">活动</a></li>
             </ul>
-            <form method="GET" action="#" accept-charset="UTF-8" class="navbar-form navbar-left hidden-sm hidden-md">
+
+            <form method="GET" action="{{route('search')}}" accept-charset="UTF-8" class="navbar-form navbar-left hidden-sm hidden-md">
                 <div class="form-group">
                   <input class="form-control search-input mac-style" placeholder="搜索" style="margin: 0" name="q" type="text" value="">
                 </div>
             </form>
+
             <!-- Right Side Of Navbar -->
             <ul class="nav navbar-nav navbar-right">
             @guest

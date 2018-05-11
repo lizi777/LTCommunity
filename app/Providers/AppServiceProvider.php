@@ -18,7 +18,9 @@ class AppServiceProvider extends ServiceProvider
 		\App\Models\Reply::observe(\App\Observers\ReplyObserver::class);
 		\App\Models\Topic::observe(\App\Observers\TopicObserver::class);
         \App\Models\Activity::observe(\App\Observers\ActivityObserver::class);
-
+        $this->app->singleton(\Faker\Generator::class, function () {
+         return \Faker\Factory::create('zh_CN');
+        });
         \Carbon\Carbon::setlocale('zh');
     }
 

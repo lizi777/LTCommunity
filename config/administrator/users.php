@@ -175,6 +175,10 @@ return [
             'title' => '邮箱',
         ],
         'activated' => [
+            'title' => '激活状态',
+            'type'  => 'bool'
+        ],
+        'is_teacher' => [
             'title' => '教师',
             'type'  => 'bool'
         ]
@@ -182,9 +186,12 @@ return [
 
     'query_filter'=> function($query)
     {
-        if (Auth::user()->can('areas_manege'))
+        if (!Auth::user()->hasRole('Founder'))
         {
-            $query->where('area_id',Auth::user()->first()->area_id);
+            $query->where('area_id', Auth::user()->first()->area_id)->where('id', '>', 1);
+        }
+        else{
+            $query->where('id','>',1);
         }
     },
 

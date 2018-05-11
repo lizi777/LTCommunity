@@ -70,3 +70,7 @@ Route::resource('replies', 'RepliesController', ['only' => ['store', 'destroy']]
 Route::resource('fileuploads', 'FileuploadsController', ['only' => ['index', 'show', 'create', 'store', 'update', 'edit', 'destroy']]);
 
 Route::resource('notifications', 'NotificationsController', ['only' => ['index']]);
+
+Route::get('/search', 'SearchController@search')->name('search');
+
+Route::POST('/klasses/{klasse}/update','KlassesController@update') -> name('klasses.update');

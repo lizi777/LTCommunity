@@ -23,11 +23,13 @@ class TopicsTableSeeder extends Seeder
                         ->each(function ($topic, $index)
                             use ($user_ids, $area_ids, $faker)
         {
+            
             // 从用户 ID 数组中随机取出一个并赋值
             $topic->user_id = $faker->randomElement($user_ids);
-            $topic->area_id = User::where('id',$topic->user_id)->first()->area_id;
+            $user = User::where('id',$topic->user_id)->first();
+            $topic->area_id = $user->area_id;
             // 班级
-            $topic->class_id = User::where('id', $topic->user_id)->first()->class_id;
+            $topic->class_id = $user->class_id;
         });
 
         // 将数据集合转换为数组，并插入到数据库中

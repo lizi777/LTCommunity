@@ -9,7 +9,7 @@
 <div class="row">
 
 
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 topic-content">
+    <div class="col-lg-10 col-md-10 col-lg-offset-1 col-md-offset-1 col-sm-12 col-xs-12 topic-content">
         <div class="panel panel-default">
             <div class="panel-body">
                 <h1 class="text-center">
@@ -25,7 +25,7 @@
                     {{ $activity->created_at->diffForHumans() }}发布
                     
                 </div>
-<hr>
+                <hr>
                 <div class="topic-body">
                     {!! $activity->content !!}
                 </div>

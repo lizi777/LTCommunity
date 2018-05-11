@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use App\Models\Reply;
 use App\Notifications\TopicReplied;
+use Auth;
 // creating, created, updating, updated, saving,
 // saved,  deleting, deleted, restoring, restored
 
@@ -18,7 +19,7 @@ class ReplyObserver
     {
         $topic = $reply->topic;
         $topic->increment('reply_count', 1);
-
+        $topic->last_reply_user_id = Auth::user()->id;
         // 通知作者话题被回复了
         $topic->user->notify(new TopicReplied($reply));
     }

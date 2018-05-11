@@ -6,6 +6,19 @@ use Nicolaslopezj\Searchable\SearchableTrait;
 
 class Topic extends Model
 {
+    use SearchableTrait;
+    
+    protected $searchable = [
+
+        'columns' => [
+            'topics.title' => 10,
+            'topics.body' => 7,
+            'topics.excerpt' => 8,
+            'topics.slug' => 8,
+        ],
+
+    ];
+
     protected $fillable = ['title', 'body', 'class_id', 'excerpt', 'slug'];
 
     public function klasse()
@@ -50,5 +63,10 @@ class Topic extends Model
     {
         // 按照创建时间排序
         return $query->orderBy('created_at', 'desc');
+    }
+    public function link($params = [])
+    {
+        //$this->increment('view_count',1);
+        return route('topics.show', array_merge([$this->id, $this->slug], $params));
     }
 }

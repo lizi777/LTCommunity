@@ -17,7 +17,7 @@ return [
         ],
         'activity_excerpt' => [
             'HTML.Doctype'             => 'XHTML 1.0 Transitional',
-            'HTML.Allowed'             => 'h2,h3,a',
+            'HTML.Allowed'             => 'h3,h4,h5,a',
             'AutoFormat.RemoveEmpty'   => true,
         ],
     ],

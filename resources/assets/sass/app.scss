@@ -206,3 +206,34 @@ tr{
         background-color: #d15b47 !important;;
     }
 }
+
+
+.navbar-nav {
+  
+}
+.nav li {
+  display:inline-block;
+}
+.navbar-right .dropdown li{
+    display:block;
+}
+.navbar {
+  border: 0;
+}
+@media(min-width:768px){
+.navbar-collapse {
+}
+}
+@media(max-width:768px){
+  .container .navbar-collapse {
+  margin-left: 12px;
+  margin-right: 12px;
+}
+}
+@media(max-width:768px){
+    footer{
+        .footer{
+            height:120px;
+        }
+    }
+}

@@ -70,5 +70,10 @@ return [
     'messages' => [
         'name.required' => '请确保名字至少三个字符以上',
     ],
-
+    'action_permissions'=> array(
+        'create' => function($model)
+        {
+            return false;
+        }
+    ),
 ];

@@ -16,8 +16,12 @@ return [
             'title'    => '话题',
             'sortable' => false,
             'output'   => function ($value, $model) {
-                return '<div style="max-width:260px">' . model_link($value, $model) . '</div>';
+                return '<div style="max-width:350px">' . model_link($value, $model) . '</div>';
             },
+        ],
+        'slug' => [
+            'title'    => '链接',
+            'sortable' => false,
         ],
         'user' => [
             'title'    => '作者',
@@ -42,55 +46,28 @@ return [
             'title'  => '管理',
             'sortable' => false,
         ],
+
     ],
     'edit_fields' => [
         'title' => [
             'title'    => '标题',
         ],
-        'user' => [
-            'title'              => '用户',
-            'type'               => 'relationship',
-            'name_field'         => 'name',
-
-            // 自动补全，对于大数据量的对应关系，推荐开启自动补全，
-            // 可防止一次性加载对系统造成负担
-            'autocomplete'       => true,
-
-            // 自动补全的搜索字段
-            'search_fields'      => ["CONCAT(id, ' ', name)"],
-
-            // 自动补全排序
-            'options_sort_field' => 'id',
-
-            'options_filter' => function($query)
-            {
-                if (!Auth::user()->hasRole('Founder'))
-                {
-                    $query->where('area_id',Auth::user()->first()->area_id);
-                }
-            },
-
+        'body' => [
+            'title'    => '内容',
+            'type'     => 'text',
         ],
-        'klasse' => [
-            'title'              => '班级',
-            'type'               => 'relationship',
-            'name_field'         => 'name',
-            'search_fields'      => ["CONCAT(id, ' ', name)"],
-            'options_sort_field' => 'id',
-            'options_filter' => function($query)
-            {
-                if (!Auth::user()->hasRole('Founder'))
-                {
-                    $query->where('area',Auth::user()->first()->area_id);
-                }
-            },
+        'excerpt' => [
+            'title'    => '摘要',
+            'type'     => 'text',
         ],
         'reply_count' => [
             'title'    => '评论',
+            'value' => 0,
         ],
-        'view_count' => [
-            'title'    => '查看',
+        'slug' => [
+            'title'    => 'slug',
         ],
+
     ],
     'filters' => [
         'title' => [
@@ -134,10 +111,12 @@ return [
         ],
     ],
     'rules'   => [
-        'title' => 'required'
+        'title' => 'required',
+        'body' => 'required'
     ],
     'messages' => [
         'title.required' => '请填写标题',
+        'body.required' => '请填写内容',
     ],
     'query_filter'=> function($query)
     {
@@ -147,4 +126,10 @@ return [
             $query->where('area_id',$area);
         }
     },
+    'action_permissions'=> array(
+        'create' => function($model)
+        {
+            return false;
+        }
+    ),
 ];

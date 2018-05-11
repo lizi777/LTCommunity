@@ -10,7 +10,7 @@
                     <!-- <i class="glyphicon glyphicon-align-justify"></i> --> 
                 {{ Auth::user()->belongsToClass()->first()->name}}
 
-                @if(Auth::user()->is_teacher || Auth::user()->can('manage_contents'))
+                @if(Auth::user()->is_teacher || Auth::user()->hasRole('Maintainer'))
                     <a class="btn btn-success pull-right" onclick="$('#fileModal').modal()">
                         <i class="glyphicon glyphicon-plus"></i> 上传文件
                     </a>
@@ -61,7 +61,7 @@
                     </div>
                 </div>    
                 @else
-                    <h3 class="text-center alert alert-info">暂时没有资源上传!请联系老师</h3>
+                    <h4 class="text-center alert alert-info">暂时没有资源上传!请联系老师</h4>
                 @endif
             </div>
         </div>

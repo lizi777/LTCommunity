@@ -28,6 +28,9 @@ return [
         'title' => [
             'title'    => '活动标题',
             'sortable' => false,
+            'output' => function ($name, $model) {
+                return '<a href="/activities/'.$model->id.'" target=_blank>'.$name.'</a>';
+            },            
         ],
         'operation' => [
             'title'  => '管理',
@@ -59,6 +62,9 @@ return [
         'title' => [
             'title' => '活动标题',
         ],
+        'content' => [
+            'title' => '活动标题',
+        ],
     ],
     'filters' => [
         'id' => [
@@ -83,4 +89,10 @@ return [
             $query->where('area',$area);
         }
     },
+    'action_permissions'=> array(
+        'create' => function($model)
+        {
+            return false;
+        }
+    ),
 ];
